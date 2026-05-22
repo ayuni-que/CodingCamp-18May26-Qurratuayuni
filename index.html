@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Life Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="dashboard">
+
+    <!-- Widget 1: Greeting -->
+    <section class="widget" id="widget-greeting">
+      <h1 id="greeting-message">Good Morning</h1>
+      <p id="greeting-time"></p>
+      <p id="greeting-date"></p>
+    </section>
+
+    <!-- Widget 2: Focus Timer -->
+    <section class="widget" id="widget-timer">
+      <h2>Focus Timer</h2>
+      <div id="timer-display">25:00</div>
+      <div class="timer-controls">
+        <button id="timer-start">Start</button>
+        <button id="timer-stop" disabled>Stop</button>
+        <button id="timer-reset" disabled>Reset</button>
+      </div>
+      <p id="timer-message" aria-live="polite"></p>
+    </section>
+
+    <!-- Widget 3: To-Do List -->
+    <section class="widget" id="widget-todo">
+      <h2>To-Do List</h2>
+      <div class="todo-input-row">
+        <input type="text" id="todo-input" placeholder="Add a task…" aria-label="New task">
+        <button id="todo-submit">Add</button>
+      </div>
+      <ul id="todo-list" aria-label="Task list"></ul>
+    </section>
+
+    <!-- Widget 4: Quick Links -->
+    <section class="widget" id="widget-links">
+      <h2>Quick Links</h2>
+      <div id="links-list" aria-label="Saved links"></div>
+      <div class="link-input-row">
+        <input type="text" id="link-label-input" placeholder="Label" aria-label="Link label">
+        <input type="text" id="link-url-input" placeholder="https://…" aria-label="Link URL">
+        <button id="link-submit">Add</button>
+      </div>
+      <p id="link-error" role="alert" aria-live="assertive"></p>
+    </section>
+
+  </main>
+  <script src="js/app.js"></script>
+</body>
+</html>

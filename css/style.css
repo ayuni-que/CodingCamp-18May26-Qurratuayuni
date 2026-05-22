@@ -1,0 +1,321 @@
+/* To-Do List Life Dashboard — css/style.css */
+
+/* === 1. CSS Custom Properties (Design Tokens) === */
+:root {
+  --color-bg:        #1a1a2e;
+  --color-surface:   #16213e;
+  --color-accent:    #0f3460;
+  --color-highlight: #e94560;
+  --color-text:      #eaeaea;
+  --color-muted:     #888;
+
+  --font-family:     'Segoe UI', system-ui, sans-serif;
+  --font-size-base:  16px;
+  --font-size-sm:    14px;
+  --font-size-lg:    1.5rem;
+  --font-size-xl:    3rem;
+
+  --radius:          8px;
+  --gap:             1rem;
+  --transition:      150ms ease;
+}
+
+/* === 2. Reset & Base Styles === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+}
+
+p, span, li, a, label, input, button, h1, h2, h3, h4, h5, h6 {
+  font-size: var(--font-size-sm);
+}
+
+/* === 3. Layout === */
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
+  padding: var(--gap);
+  min-height: 100vh;
+}
+
+/* === 4. Widget Styles === */
+.widget {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: var(--gap);
+}
+
+/* === 5. Responsive Overrides === */
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --font-size-xl: 2rem;
+    --font-size-lg: 1.2rem;
+  }
+
+  .widget {
+    padding: 0.75rem;
+  }
+
+  .dashboard {
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+
+  .link-input-row {
+    flex-direction: column;
+  }
+
+  .link-input-row input,
+  .link-input-row button {
+    width: 100%;
+  }
+}
+
+/* === 6. Greeting Widget === */
+#greeting-message {
+  font-size: var(--font-size-xl);
+  color: var(--color-highlight);
+}
+
+#greeting-time {
+  font-size: var(--font-size-lg);
+  font-family: monospace;
+}
+
+#greeting-date {
+  font-size: var(--font-size-sm);
+  color: var(--color-muted);
+}
+
+/* === 7. Focus Timer Widget === */
+#timer-display {
+  font-size: var(--font-size-xl);
+  font-family: monospace;
+  text-align: center;
+  margin: var(--gap) 0;
+}
+
+.timer-controls {
+  display: flex;
+  gap: var(--gap);
+  justify-content: center;
+}
+
+.timer-controls button {
+  background: var(--color-accent);
+  color: var(--color-text);
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.timer-controls button:hover,
+.timer-controls button:focus {
+  background: var(--color-highlight);
+  outline: 2px solid var(--color-highlight);
+  outline-offset: 2px;
+}
+
+.timer-controls button[disabled] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+#timer-message {
+  color: var(--color-highlight);
+  font-size: var(--font-size-sm);
+  text-align: center;
+  margin-top: var(--gap);
+}
+
+/* === 8. To-Do List Widget === */
+.todo-input-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+#todo-input {
+  flex: 1;
+}
+
+#todo-input:focus {
+  outline: 2px solid var(--color-highlight);
+  outline-offset: 2px;
+}
+
+#todo-list {
+  list-style: none;
+  margin-top: var(--gap);
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--color-accent);
+}
+
+.task-item.done .task-text {
+  text-decoration: line-through;
+  color: var(--color-muted);
+}
+
+.task-text {
+  flex: 1;
+}
+
+.task-complete,
+.task-edit,
+.task-delete,
+.task-confirm,
+.task-cancel {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text);
+  transition: var(--transition);
+}
+
+.task-complete:hover,
+.task-edit:hover,
+.task-delete:hover,
+.task-confirm:hover,
+.task-cancel:hover,
+.task-complete:focus,
+.task-edit:focus,
+.task-delete:focus,
+.task-confirm:focus,
+.task-cancel:focus {
+  color: var(--color-highlight);
+  outline: 2px solid var(--color-highlight);
+  outline-offset: 2px;
+}
+
+.task-edit-input {
+  flex: 1;
+  background: var(--color-accent);
+  color: var(--color-text);
+  border: 1px solid var(--color-highlight);
+  border-radius: var(--radius);
+  padding: 0.25rem 0.5rem;
+}
+
+.task-edit-input:focus {
+  outline: 2px solid var(--color-highlight);
+  outline-offset: 2px;
+}
+
+/* === 9. Quick Links Widget === */
+#links-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: var(--gap);
+}
+
+.link-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.link-btn {
+  background: var(--color-accent);
+  color: var(--color-text);
+  border-radius: var(--radius);
+  padding: 0.4rem 0.8rem;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.link-btn:hover,
+.link-btn:focus {
+  background: var(--color-highlight);
+  outline: 2px solid var(--color-highlight);
+  outline-offset: 2px;
+}
+
+.link-remove {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-muted);
+  transition: var(--transition);
+}
+
+.link-remove:hover,
+.link-remove:focus {
+  color: var(--color-highlight);
+  outline: 2px solid var(--color-highlight);
+  outline-offset: 2px;
+}
+
+.link-input-row {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.link-input-row input {
+  flex: 1;
+  min-width: 80px;
+}
+
+#link-label-input:focus,
+#link-url-input:focus {
+  outline: 2px solid var(--color-highlight);
+  outline-offset: 2px;
+}
+
+#link-error {
+  color: var(--color-highlight);
+  font-size: var(--font-size-sm);
+  min-height: 1.2em;
+}
+
+/* === 10. Submit button focus styles === */
+#todo-submit:focus,
+#link-submit:focus {
+  outline: 2px solid var(--color-highlight);
+  outline-offset: 2px;
+}
+
+#todo-submit,
+#link-submit {
+  background: var(--color-accent);
+  color: var(--color-text);
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+#todo-submit:hover,
+#link-submit:hover {
+  background: var(--color-highlight);
+}
+
+/* === 11. Overflow protection === */
+.task-text,
+.link-btn {
+  overflow-wrap: break-word;
+}
